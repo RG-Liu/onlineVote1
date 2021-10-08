@@ -12,8 +12,7 @@ import com.qst.onlineVote.dao.ListDao;
 
 
 
-
-
+@WebServlet("/delServlet")
 public class DelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -25,16 +24,18 @@ public class DelServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+    	response.setContentType("text/html;charset=utf-8");
 		ListDao listDao=new ListDao();
 
 
 		String title =request.getParameter("title");
 		int titleid=listDao.findTitleId(title);
-		//删除投票表的信息
+		//鍒犻櫎鎶曠エ琛ㄧ殑淇℃伅
 		listDao.delVote(titleid);
-		//删除选项表的信息
+		//鍒犻櫎閫夐」琛ㄧ殑淇℃伅
 		listDao.delOption(titleid);
-		//删除标题表的信息。
+		//鍒犻櫎鏍囬琛ㄧ殑淇℃伅
 		listDao.delArticle(titleid);
 		response.sendRedirect("admin/index_files/tpList.jsp");
 		

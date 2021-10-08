@@ -1,5 +1,7 @@
 package com.qst.onlineVote.servlet;
 
+
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -14,26 +16,29 @@ import com.qst.onlineVote.pojo.User;
 
 
 
-
-
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+    	request.setCharacterEncoding("utf-8");
+    	response.setContentType("text/html;charset=utf-8");
         UserDao userDao=new UserDao();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
+        String code=request.getParameter("vcode");
+        HttpSession se=request.getSession();
+       String vcode=(String)se.getAttribute("vcode");
+       
         try {
             int id=userDao.UserLogin(new User(username,password));
-            if(id!=0){
+            if(id!=0&&code.equalsIgnoreCase(vcode)){
                 HttpSession session=request.getSession();
                 session.setAttribute("username",username);
                 response.sendRedirect("admin/index.jsp");
             }else{
-                request.setAttribute("msg","用户名或密码错误");
-                request.getRequestDispatcher("login.jsp").forward(request,response);
+            request.setAttribute("msg","鐢ㄦ埛鍚嶆垨瀵嗙爜閿欒");
+                request.getRequestDispatcher("LoginPage.jsp").forward(request,response);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,7 +47,7 @@ public class LoginServlet extends HttpServlet {
     }
 
 
-
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req,resp);
     }

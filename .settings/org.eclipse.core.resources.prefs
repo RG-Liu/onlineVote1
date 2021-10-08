@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/qst/onlineVote/filter/CharacterFilter.java=UTF-8
+encoding//src/main/java/com/qst/onlineVote/filter/SessionCheckFilter.java=UTF-8
+encoding//src/main/java/com/qst/onlineVote/servlet/AjaxRegisterServlet.java=UTF-8
+encoding//src/main/java/com/qst/onlineVote/servlet/ArticleListServlet.java=UTF-8
+encoding//src/main/java/com/qst/onlineVote/servlet/AttendVoteServlet.java=UTF-8
+encoding//src/main/java/com/qst/onlineVote/servlet/ChangeSuccessServlet.java=UTF-8
+encoding//src/main/java/com/qst/onlineVote/servlet/DelServlet.java=UTF-8
+encoding//src/main/java/com/qst/onlineVote/servlet/LoginServlet.java=UTF-8
+encoding//src/main/java/com/qst/onlineVote/servlet/LookVoteServlet.java=UTF-8
+encoding//src/main/java/com/qst/onlineVote/servlet/RegisterServlet.java=UTF-8
+encoding//src/main/java/com/qst/onlineVote/servlet/WhetherVoteServlet.java=UTF-8
+encoding//src/main/java/com/qst/onlineVote/servlet/exitServlet.java=UTF-8
+encoding//src/main/resources/db.properties=UTF-8
+encoding//src/main/webapp/css/index.css=UTF-8
+encoding//src/main/webapp/css/login.css=UTF-8
+encoding//src/main/webapp/css/reg.css=UTF-8

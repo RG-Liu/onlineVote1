@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ import com.qst.onlineVote.pojo.Listing;
 
 
 
+@WebServlet("/articleListServlet")
 public class ArticleListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -33,6 +35,8 @@ public class ArticleListServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+    	response.setContentType("text/html;charset=utf-8");
 		UserDao userDao=new UserDao();
 		ListDao listDao=new ListDao();
 		request.setCharacterEncoding("utf-8");
@@ -46,7 +50,7 @@ public class ArticleListServlet extends HttpServlet {
 		String hi=request.getParameter("hi");
 		System.out.println(hi);
 		if(hi!=null&&hi.equals("1")){
-			//Èç¹ûhiµÈÓÚ1£¬ÁĞ±íÔòÏÔÊ¾ÎªÎ¬»¤×´Ì¬
+			//å¦‚æœhiç­‰äº1ï¼Œåˆ—è¡¨åˆ™æ˜¾ç¤ºä¸ºç»´æŠ¤çŠ¶æ€
 			request.setAttribute("del", "d");
 		}
 
@@ -58,10 +62,10 @@ public class ArticleListServlet extends HttpServlet {
 			request.setAttribute("del", del);
 		}
 
-		//Ò³Êı
+		//é¡µæ•°
 		int goPage=1;
-		int count= listDao.artlcleCount();//»ñÈ¡µÄ×Ü¼ÇÂ¼£¨Í¶Æ±Êı£©ÌõÊı
-		int pageCount;//×ÜÒ³Êı
+		int count= listDao.artlcleCount();//è·å–çš„æ€»è®°å½•ï¼ˆæŠ•ç¥¨æ•°ï¼‰æ¡æ•°
+		int pageCount;//æ€»é¡µæ•°
 		if (count%5!=0){
 			pageCount = count/5+1;}
 		else{
@@ -98,7 +102,7 @@ public class ArticleListServlet extends HttpServlet {
 
 			request.getRequestDispatcher("admin/index_files/tpList.jsp").forward(request, response);
 		} else if (flag.equals("search")) {
-			//ËÑË÷¿òÄ£ºı²éÑ¯
+			//æœç´¢æ¡†æ¨¡ç³ŠæŸ¥è¯¢
 			
 			String title = request.getParameter("search");
 			List<Listing> list = new ArrayList<Listing>();
@@ -110,7 +114,7 @@ public class ArticleListServlet extends HttpServlet {
 			}
 
 			if (list.size() == 0) {
-				//Èç¹ûÃ»ËÑË÷µ½¡£
+				//å¦‚æœæ²¡æœç´¢åˆ°ã€‚
 				request.setAttribute("flag", 1);
 				request.getRequestDispatcher("admin/index_files/tpList.jsp").forward(request, response);
 			} else {
@@ -119,12 +123,12 @@ public class ArticleListServlet extends HttpServlet {
 			}
 
 		} else if (flag.equals("add")) {
-			//ĞÂÔöÍ¶Æ±¡£
+			//æ–°å¢æŠ•ç¥¨ã€‚
 			String title = request.getParameter("title");
 			boolean is=listDao.isReleaseVote(title);
 			if(is){
 				response.getWriter().print(
-						"<script language='JavaScript'>alert('¸ÃÍ¶Æ±ÒÑ±»·¢²¼£¬Ìí¼ÓÊ§°Ü');window.location.href='admin/addNewtp_files/addNewtp.jsp';</script>");
+						"<script language='JavaScript'>alert('è¯¥æŠ•ç¥¨å·²è¢«å‘å¸ƒï¼Œæ·»åŠ å¤±è´¥');window.location.href='admin/addNewtp_files/addNewtp.jsp';</script>");
 			}
 			else{
 				String type = request.getParameter("type");
@@ -141,26 +145,27 @@ public class ArticleListServlet extends HttpServlet {
 				}
 
 
-				int tp;//±ê¼Ç£ºµ¥Ñ¡ÊÇ0  ¶àÑ¡ÊÇ1
+				int tp;//æ ‡è®°ï¼šå•é€‰æ˜¯0  å¤šé€‰æ˜¯1
 				if (type.equals("dan")) {
 					tp = 0;
 				} else {
 					tp = 1;
 				}
-				//Ìí¼ÓÍ¶Æ±±íµÄĞÅÏ¢
+				//æ·»åŠ æŠ•ç¥¨è¡¨çš„ä¿¡æ¯
 				int id = listDao.addTitle(title,ts,tp);
 
 				String[] option = request.getParameterValues("option");
 
-				//Ìí¼ÓÑ¡Ïî±íµÄĞÅÏ¢
+				//æ·»åŠ é€‰é¡¹è¡¨çš„ä¿¡æ¯
 				for (String string : option) {
 					listDao.addOption(string, id);
 				}
 				response.getWriter().print(
-						"<script language='JavaScript'>alert('Ìí¼Ó³É¹¦');window.location.href='admin/index_files/tpList.jsp';</script>");
+						"<script language='JavaScript'>alert('æ·»åŠ æˆåŠŸ');window.location.href='admin/index_files/tpList.jsp';</script>");
 			}
 			
 		}
 
 	}
+
 }

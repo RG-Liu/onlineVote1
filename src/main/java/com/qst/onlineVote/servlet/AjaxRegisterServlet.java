@@ -1,7 +1,6 @@
 package com.qst.onlineVote.servlet;
 
-import java.io.IOException;
-import java.sql.SQLException;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,13 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.qst.onlineVote.dao.UserDao;
 
-
+import java.io.IOException;
+import java.sql.SQLException;
 
 /**
- * ÅĞ¶ÏÓÃ»§ÊÇ·ñÒÑ×¢²á
+ * åˆ¤æ–­ç”¨æˆ·æ˜¯å¦å·²æ³¨å†Œ
  *
  */
-
+@WebServlet("/AjaxRegisterServlet")
 public class AjaxRegisterServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -26,17 +26,19 @@ public class AjaxRegisterServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDao userDao=new UserDao();
+    	request.setCharacterEncoding("utf-8");
+    	response.setContentType("text/html;charset=utf-8");
+    	UserDao userDao=new UserDao();
 
         String name= request.getParameter("user_name");
-        System.out.println("LRG£º"+name);
+        System.out.println("LRGï¼š"+name);
         try {
             int register = userDao.isRegister(name);
             if(register==1){
-                System.out.println("ÓÃ»§ÃûÒÑ±»×¢²á");
-                response.getWriter().print("ÓÃ»§ÃûÒÑ±»×¢²á");
+                System.out.println("ç”¨æˆ·åå·²è¢«æ³¨å†Œ");
+                response.getWriter().print("ç”¨æˆ·åå·²è¢«æ³¨å†Œ");
             }else {
-                response.getWriter().print("ÓÃ»§Ãû¿ÉÒÔÊ¹ÓÃ");
+                response.getWriter().print("ç”¨æˆ·åå¯ä»¥ä½¿ç”¨");
             }
         } catch (SQLException e) {
             e.printStackTrace();

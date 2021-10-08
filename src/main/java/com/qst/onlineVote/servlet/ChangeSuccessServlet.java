@@ -11,13 +11,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.qst.onlineVote.dao.ListDao;
 
 
 
 
-
+@WebServlet("/changeSuccessServlet")
 public class ChangeSuccessServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,11 +36,11 @@ public class ChangeSuccessServlet extends HttpServlet {
 
 		String title = request.getParameter("title");
 		int titleid=listDao.findTitleId(title);
-		//É¾³ıÍ¶Æ±±íµÄĞÅÏ¢
+		//åˆ é™¤æŠ•ç¥¨è¡¨çš„ä¿¡æ¯
 		listDao.delVote(titleid);
-		//É¾³ıÑ¡Ïî±íµÄĞÅÏ¢
+		//åˆ é™¤é€‰é¡¹è¡¨çš„ä¿¡æ¯
 		listDao.delOption(titleid);
-		//É¾³ı±êÌâ±íµÄĞÅÏ¢¡£
+		//åˆ é™¤æ ‡é¢˜è¡¨çš„ä¿¡æ¯ã€‚
 		listDao.delArticle(titleid);
 		
 		String type=request.getParameter("type");
@@ -64,16 +65,16 @@ public class ChangeSuccessServlet extends HttpServlet {
 
 
 
-		//Ìí¼ÓÍ¶Æ±±íµÄĞÅÏ¢¡£
+		//æ·»åŠ æŠ•ç¥¨è¡¨çš„ä¿¡æ¯ã€‚
 
 		int id = listDao.addTitle(title,ts,tp);
 
 		String[] option = request.getParameterValues("option");
-		//Ìí¼ÓÑ¡Ïî±íµÄĞÅÏ¢¡£
+		//æ·»åŠ é€‰é¡¹è¡¨çš„ä¿¡æ¯ã€‚
 		for (String string : option) {
 			listDao.addOption(string, id);
 		}
-		response.getWriter().print("<script language='JavaScript'>alert('ĞŞ¸Ä³É¹¦');window.location.href='admin/index_files/tpList.jsp';</script>");
+		response.getWriter().print("<script language='JavaScript'>alert('ä¿®æ”¹æˆåŠŸ');window.location.href='admin/index_files/tpList.jsp';</script>");
 	}
 
 }

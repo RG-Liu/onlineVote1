@@ -17,9 +17,9 @@ import com.qst.onlineVote.dao.UserDao;
 
 
 /**
- *�����ͶƱ���򿴿����û��ĵ�ͶƱ��Ϣ��
+ *如果已投票，则看看该用户的的投票信息
  */
-
+@WebServlet("/whetherVoteServlet")
 public class WhetherVoteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public WhetherVoteServlet() {
@@ -31,6 +31,8 @@ public class WhetherVoteServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+    	response.setContentType("text/html;charset=utf-8");
 		ListDao listDao=new ListDao();
 		UserDao userDao=new UserDao();
 
@@ -44,10 +46,10 @@ public class WhetherVoteServlet extends HttpServlet {
 		String username=(String) session.getAttribute("username");
 		int userid=userDao.findUserId(username);
 		
-		//��ȡ��ͶƱ������ѡ��
+		//获取该投票的所有选项
 		List<String> slist=listDao.findTitleOption(titleid);
 		
-		//��ȡ�û���ѡ���ѡ��
+		//获取用户已选择的选项
 		List<Integer> inte=listDao.findUserOption(titleid, userid);
 		List<String>  sinte=new ArrayList<String>();
 		for (int i : inte) {

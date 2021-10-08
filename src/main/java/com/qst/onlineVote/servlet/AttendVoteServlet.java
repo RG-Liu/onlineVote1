@@ -1,5 +1,7 @@
 package com.qst.onlineVote.servlet;
 
+
+
 import java.io.IOException;
 import java.util.List;
 
@@ -15,8 +17,7 @@ import com.qst.onlineVote.dao.UserDao;
 
 
 
-
-
+@WebServlet("/attendVoteServlet")
 public class AttendVoteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -35,7 +36,7 @@ public class AttendVoteServlet extends HttpServlet {
 		UserDao userDao=new UserDao();
 		String types=request.getParameter("type");
 		if(types==null||types.equals("")){
-			//²ÎÓëÍ¶Æ±
+			//å‚ä¸æŠ•ç¥¨
 			String title=request.getParameter("title");
 			String optionNum=request.getParameter("optionNum");
 			String voteNum=request.getParameter("voteNum");
@@ -50,7 +51,7 @@ public class AttendVoteServlet extends HttpServlet {
 			request.getRequestDispatcher("admin/cytp_files/cytp.jsp").forward(request, response);
 		}else{
 			
-			//Ìí¼ÓĞÂÍ¶Æ±¡£
+			//æ·»åŠ æ–°æŠ•ç¥¨ã€‚
 			HttpSession session=request.getSession();			
 			String name=(String) session.getAttribute("username");
 			int userId=userDao.findUserId(name);
@@ -69,7 +70,7 @@ public class AttendVoteServlet extends HttpServlet {
 					listDao.addvote(titleId, optionid, userId);
 				}	
 			}
-			response.getWriter().print("<script language='JavaScript'>alert('Í¶Æ±³É¹¦');window.location.href='admin/index_files/tpList.jsp';</script>");
+			response.getWriter().print("<script language='JavaScript'>alert('æŠ•ç¥¨æˆåŠŸ');window.location.href='admin/index_files/tpList.jsp';</script>");
 		}
 		
 	}

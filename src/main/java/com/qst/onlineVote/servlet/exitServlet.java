@@ -1,16 +1,14 @@
 package com.qst.onlineVote.servlet;
 
-import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
-
-
+@WebServlet("/exitServlet")
 public class exitServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -21,9 +19,11 @@ public class exitServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session=request.getSession();
+    	request.setCharacterEncoding("utf-8");
+    	response.setContentType("text/html;charset=utf-8");
+    	HttpSession session=request.getSession();
         session.invalidate();
-        request.setAttribute("msg", "ÒÑ¾­ÍË³ö£¬ÇëÖØĞÂµÇÂ¼");
+        request.setAttribute("msg", "å·²ç»é€€å‡ºï¼Œè¯·é‡æ–°ç™»å½•");
         request.getRequestDispatcher("LoginPage.jsp").forward(request, response);
 
     }
