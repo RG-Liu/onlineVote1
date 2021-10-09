@@ -24,7 +24,7 @@ public class CodeServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		  //创建空白图片
-		BufferedImage image=new BufferedImage(100, 30, BufferedImage.TYPE_INT_RGB);
+		BufferedImage image=new BufferedImage(70, 30, BufferedImage.TYPE_INT_RGB);
 		//获取图片画笔
 		Graphics g=image.getGraphics();
 		  Random r=new Random();
@@ -35,12 +35,12 @@ public class CodeServlet extends HttpServlet {
 		 //绘制8条干扰线
 		 for(int i=0;i<8;i++){
 			 g.setColor(new Color(r.nextInt(255),r.nextInt(255),r.nextInt(255)));
-			 g.drawLine(r.nextInt(100), r.nextInt(30), r.nextInt(100), r.nextInt(30));
+			 g.drawLine(r.nextInt(90), r.nextInt(30), r.nextInt(100), r.nextInt(30));
 		 }
 		 //设置画笔颜色
 		 g.setColor(new Color(r.nextInt(255),r.nextInt(255),r.nextInt(255)));
 		 //调用方法，获取长度为5的随机字符串 
-		 String number=getNumbers(5);
+		 String number=getNumbers(4);
 		    HttpSession se=request.getSession();
 		      se.setAttribute("vcode", number);
 		  g.setFont(new Font(null, Font.ITALIC+Font.BOLD, 24));

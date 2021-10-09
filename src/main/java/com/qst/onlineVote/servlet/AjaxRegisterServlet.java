@@ -33,8 +33,8 @@ public class AjaxRegisterServlet extends HttpServlet {
         String name= request.getParameter("user_name");
         System.out.println("LRG："+name);
         try {
-            int register = userDao.isRegister(name);
-            if(register==1){
+            boolean register = userDao.isRegister(name);
+            if(register){
                 System.out.println("用户名已被注册");
                 response.getWriter().print("用户名已被注册");
             }else {

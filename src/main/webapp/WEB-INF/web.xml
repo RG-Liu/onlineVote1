@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
- <servlet>
+  <welcome-file-list>
+    <welcome-file>登录界面</welcome-file>
+    <welcome-file>LoginPage.jsp</welcome-file>
+  </welcome-file-list>
+  <filter>
+    <filter-name>SessionCheckFilter</filter-name>
+    <filter-class>com.qst.onlineVote.filter.SessionCheckFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>SessionCheckFilter</filter-name>
+    <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  <servlet>
     <servlet-name>CodeServlet</servlet-name>
     <servlet-class>com.qst.onlineVote.servlet.CodeServlet</servlet-class>
   </servlet>
@@ -8,5 +20,4 @@
     <servlet-name>CodeServlet</servlet-name>
     <url-pattern>/code</url-pattern>
   </servlet-mapping>
- 
 </web-app>

@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import com.qst.onlineVote.dao.UserDao;
+import com.qst.onlineVote.pojo.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -31,6 +34,9 @@ public class RegisterServlet extends HttpServlet {
         UserDao userDao=new UserDao();
         int flag = 0;
         try {
+        	 //md5加密
+            password=DigestUtils.md5Hex(password);
+
             flag = userDao.register(username,password);
             if (flag > 0) {
                 response.sendRedirect("admin/regS.jsp");

@@ -9,7 +9,7 @@
 	<script type="text/javascript">
 		function checkname() {
 			var name=document.getElementById("username").value;
-			$.get("AjaxRegisterServlet",{"user_name":name},function(data){
+			$.get("../AjaxRegisterServlet",{"user_name":name},function(data){
 				var msg=document.getElementById("msg");
 				msg.innerHTML=data;
 				msg.value=data;

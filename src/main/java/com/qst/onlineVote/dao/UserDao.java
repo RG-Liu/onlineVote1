@@ -80,18 +80,37 @@ public class UserDao{
     /**
      * 判断用户是否已注册
      */
-    public int isRegister(String name) throws SQLException {
+    public boolean isRegister(String name) throws SQLException {
         connection=DBUtil.getConn();
         String sql = "select * from user where username=?";
         ps=connection.prepareStatement(sql);
         ps.setString(1,name);
         rs=ps.executeQuery();
         if(rs.next()){
-            return 1;
+            return true;
         }
         DBUtil.close();
-        return 0;
+        return false;
     }
+ //   	 connection=DBUtil.getConn();
+//    	 
+//    	 String sql = "select * from user where username=?";
+//    	 try {
+//			ps=connection.prepareStatement(sql);
+//			ps.setString(1, name);
+//			ResultSet rs=ps.executeQuery();
+//			if(rs.next()){
+//				name=rs.getString(name);
+//			}
+//			
+//		} catch (SQLException e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}finally{
+//			 DBUtil.close();
+//		}
+//    	 return 0;
+//    }
 
     /**
     *根据名字查找ID

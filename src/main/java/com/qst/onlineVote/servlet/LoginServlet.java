@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import com.qst.onlineVote.dao.UserDao;
 import com.qst.onlineVote.pojo.User;
 
@@ -31,6 +33,9 @@ public class LoginServlet extends HttpServlet {
        String vcode=(String)se.getAttribute("vcode");
        
         try {
+        	 //md5加密
+            password=DigestUtils.md5Hex(password);
+
             int id=userDao.UserLogin(new User(username,password));
             if(id!=0&&code.equalsIgnoreCase(vcode)){
                 HttpSession session=request.getSession();
@@ -43,6 +48,8 @@ public class LoginServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+       
+       
 
     }
 

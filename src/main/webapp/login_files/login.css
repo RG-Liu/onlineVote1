@@ -4,14 +4,14 @@
 }
 .mid{
 	background: #7BA4D0;
-	height:154px;
+	height:190px;
 	width:900px;
 	border-radius: 5px;
 	margin-top:10px;
 
 }
 .mid01{
-	width: 210px;
+	width: 220px;
 	float:left;
 }
 .mid02{
@@ -28,7 +28,7 @@
 }
 .mid03{
 	width:250px;
-	height:172px;
+	height:190px;
 	margin-left:170px;
 	float: left;
 	border:1px solid #D0CFD1;
@@ -68,7 +68,7 @@ a:hover{
 	margin-top:25px;
 }
 .end{
-	margin-top:5px;
+	margin-top:30px;
 	text-align: center;
 	color:#333333;
 	font:13px "微软雅黑";

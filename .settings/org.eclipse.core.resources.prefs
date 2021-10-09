@@ -15,3 +15,4 @@ encoding//src/main/resources/db.properties=UTF-8
 encoding//src/main/webapp/css/index.css=UTF-8
 encoding//src/main/webapp/css/login.css=UTF-8
 encoding//src/main/webapp/css/reg.css=UTF-8
+encoding//src/main/webapp/login_files/login.css=UTF-8
