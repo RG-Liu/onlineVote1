@@ -30,7 +30,7 @@ public class SessionCheckFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		String path = req.getRequestURI();
-		System.out.println(path);
+		//System.out.println(path);
 		if (session.getAttribute("username") != null) {
 			chain.doFilter(request, response);// 交给下一个过滤器或servlet处理
 		} else {
